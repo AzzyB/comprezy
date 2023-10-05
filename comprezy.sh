@@ -96,6 +96,37 @@ archiveWith_tar() {
     fi
 }
 
+# Function to set the default directory in Settings for compressed files 
+setDefaultDirectory() {
+
+	read -p "Enter the default directory path: " default_dir
+	echo "DEFAULT_DIR=\"$default_dir\"" > settings.conf
+	echo "Default directory is set to: $default_dir"
+	read -p "Press Enter to continue..."
+
+}
+
+# Function to update xz and gzip packages
+updatePackages() {
+
+	checkPackage "xz"
+    	checkPackage "gzip"
+    	echo "xz and gzip packages are up to date."
+    	read -p "Press Enter to continue..."
+
+}
+
+# Load Settings in from settings.conf if it exists
+if [ -e settings.conf  ]; then
+
+	source settings.conf
+
+else
+
+	DEFAULT_DIR=""
+
+fi
+
 # Main menu
 while true; do
 
@@ -116,7 +147,22 @@ while true; do
         1) compressWith_gz ;;
         2) compressWith_xz ;;
         3) archiveWith_tar ;;
-        4) echo "Settings option not implemented yet." ;;
+        4) 
+
+		clear
+            	echo "-=-=-=- Settings -=-=-=-"
+		echo " "
+            	echo "1. Set Default Directory"
+            	echo "2. Update Packages"
+            	echo "3. Back"
+		echo " "
+            	read -p "Enter your choice: " settings_choice
+            	case $settings_choice in
+                	1) setDefaultDirectory ;;
+                	2) updatePackages ;;
+                	3) ;;
+                	*) echo "Invalid choice. Please select a valid option." ;;
+            	esac ;;
         5) exit 0 ;;
         *) echo "Invalid choice. Please select a valid option." ;;
 		
@@ -124,8 +170,6 @@ while true; do
 	
     read -p "Press Enter to continue..."
 	
-done
-
-
+    done
 
 }
