@@ -4,7 +4,7 @@
 ### Desc:
 Comprezy is a terminal tool meant to ease the use of compression (gz and xz) and archiving (tar) terminal tools. 
 
-![Comprezy.png](comprezy.png?raw=true "Comprezy")
+![comprezy.png](comprezy.png?raw=true "Comprezy")      ![comprezy - settings.png](comprezy_settings.png?raw=true "Comprezy Settings")
 
 ### Features:
 * Easy compression with gz (faster/mid-compression)
