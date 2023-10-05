@@ -4,7 +4,7 @@
 # USAGE: ./comprezy.sh
 # DESC: Comprezy is just a simple temrinal based tool to help with the use of compression tools like gz and xz
 # CREATED: by Azzy on 10/4/2023
-# VERSION: 1.3.0
+# VERSION: 1.4.1
 # 
 
 #Function to check if a package is installed and install it if not
