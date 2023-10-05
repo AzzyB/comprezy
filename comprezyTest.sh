@@ -1,5 +1,12 @@
 #!/bin/bash
 
+# FILE: Comprezy
+# USAGE: ./comprezy.sh
+# DESC: Comprezy is just a simple temrinal based tool to help with the use of compression tools like gz and xz
+# CREATED: by Azzy on 10/4/2023
+# VERSION: 1.3.0
+# 
+
 #Function to check if a package is installed and install it if not
 checkPackage() {
 
@@ -87,8 +94,38 @@ uncompress() {
     else
         echo "Unsupported compression format. Please use .tar.gz or .tar.xz files."
     fi
-    
-    read -p "Press Enter to continue..."
+
+}
+
+# Function to encrypt a file
+encryptFile() {
+
+    checkPackage "gpg"
+
+    read -p "Enter the filename to encrypt: " file_to_encrypt
+
+    if [ "$passphrase" != "$confirm_passphrase" ]; then
+
+        echo "Passphrases do not match. Encryption canceled."
+        return
+
+    fi
+
+    gpg -c --passphrase "$passphrase" "$file_to_encrypt"
+    echo "File encrypted successfully."
+
+}
+
+# Function to decrypt an encrypted file
+decryptFile() {
+
+    checkPackage "gpg"
+    read -p "Enter the encrypted filename: " encrypted_file
+    echo
+
+    gpg --batch --yes --passphrase "$passphrase" -d "$encrypted_file" > decrypted_file
+    echo "File decrypted successfully."
+
 }
 
 # Function to create a tar archive
@@ -128,9 +165,9 @@ setDefaultDirectory() {
 updatePackages() {
 
 	checkPackage "xz"
-    	checkPackage "gzip"
-    	echo "xz and gzip packages are up to date."
-    	read -p "Press Enter to continue..."
+    checkPackage "gzip"
+    echo "xz and gzip packages are up to date."
+    read -p "Press Enter to continue..."
 
 }
 
@@ -154,9 +191,11 @@ while true; do
     echo "1. Compress using gz"
     echo "2. Compress using xz"
     echo "3. Uncompress file"
-    echo "4. Archive with Tar"
-    echo "5. Settings"
-    echo "6. Exit"
+    echo "4. Encrypt file"
+    echo "5. Decrypt file"
+    echo "6. Archive with Tar"
+    echo "7. Settings"
+    echo "8. Exit"
     echo " "
 		
     read -p "Choose an Option: " choice
@@ -165,9 +204,11 @@ while true; do
 	
         1) compressWith_gz ;;
         2) compressWith_xz ;;
-	3) uncompress ;;
-        4) archiveWith_tar ;;
-        5) 
+	    3) uncompress ;;
+        4) encryptFile ;;
+        5) decryptFile ;;
+        6) archiveWith_tar ;;
+        7) 
 
 		clear
             	echo "-=-=-=- Settings -=-=-=-"
@@ -176,14 +217,14 @@ while true; do
             	echo "2. Update Packages"
             	echo "3. Back"
 		echo " "
-            	read -p "Enter your choice: " settings_choice
+            	read -p "Choose an Option: " settings_choice
             	case $settings_choice in
                 	1) setDefaultDirectory ;;
                 	2) updatePackages ;;
                 	3) ;;
                 	*) echo "Invalid choice. Please select a valid option." ;;
             	esac ;;
-        6) exit 0 ;;
+        8) exit 0 ;;
         *) echo "Invalid choice. Please select a valid option." ;;
 		
     esac
@@ -191,5 +232,3 @@ while true; do
     read -p "Press Enter to continue..."
 	
     done
-
-}
