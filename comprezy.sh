@@ -4,7 +4,7 @@
 # USAGE: ./comprezy.sh
 #
 # DESC: Comprezy is just a simple terminal based tool to help with the use of compression tools like gz and xz along with
-# gnupg encryption to manipulate file archiving
+# gnupg encryption
 #
 # CREATED: by Azzy on 10/4/2023
 # VERSION: 1.6.3
@@ -37,7 +37,7 @@ checkPackage() {
 # Function to update xz and gzip packages
 updatePackages() {
 
-    checkPackage "xz"
+	checkPackage "xz"
     checkPackage "gzip"
     echo "xz and gzip packages are up to date."
     read -p "Press Enter to continue..."
