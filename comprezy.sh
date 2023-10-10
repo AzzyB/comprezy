@@ -37,7 +37,7 @@ checkPackage() {
 # Function to update xz and gzip packages
 updatePackages() {
 
-	checkPackage "xz"
+    checkPackage "xz"
     checkPackage "gzip"
     echo "xz and gzip packages are up to date."
     read -p "Press Enter to continue..."
