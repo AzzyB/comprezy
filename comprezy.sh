@@ -7,7 +7,7 @@
 # gnupg encryption
 #
 # CREATED: by Azzy on 10/4/2023
-# VERSION: 1.6.3
+# VERSION: 1.7.0
 
 #Function to check if a package is installed and install it if not
 checkPackage() {
@@ -15,16 +15,20 @@ checkPackage() {
 	local packageName="$1"
 
 	if ! command -v "$packageName" &>/dev/null; then
+ 
 		echo "$packageName is not installed. Attempting to install..."
 
 		#Check the package manager and install accordingly
 		if command -v dnf &>/dev/null; then
+  
 			sudo dnf install -y "$packageName"
 
 		elif command -v yum &>/dev/null; then
+  
 			sudo yum install -y "$packageName"
 
 		elif command -v apt-get &>/dev/null; then
+  
 			sudo apt-get install -y "$packageName"
 
 		else
@@ -51,9 +55,11 @@ compressWith_gz() {
     checkPackage "gzip"
 
     echo "Note: Enter the full file name including extension or full directory path unless the file/folder is in the current working directory."
+    echo ""
     read -p "Enter the path to the file/directory: " sourcePath
 
     echo "Note: The compression will auto append .tar.gz to the output."
+    echo ""
     read -p "Enter the desired name for the compressed file: " compressedName
 
     # Add .tar.gz extension to the user's input
@@ -78,9 +84,11 @@ compressWith_xz() {
     checkPackage "xz"
 
     echo "Note: Enter the full file name including extension or full directory path unless the file/folder is in the current working directory."
+    echo ""
     read -p "Enter the path to the file/directory: " sourcePath
 
     echo "Note: The compression will auto append .tar.xz to the output."
+	echo ""
     read -p "Enter the desired name for the compressed file: " compressedName
 
     # Add .tar.xz extension to the user's input
@@ -100,6 +108,7 @@ compressWith_xz() {
 
 # Function to uncompress and unarchive files
 uncompress() {
+
     read -p "Enter the compressed filename (with .tar.gz or .tar.xz extension): " compressedFile
     checkPackage "gzip"
     checkPackage "xz"
@@ -203,6 +212,20 @@ archiveWith_tar() {
     fi
 }
 
+# Function to list files in a directory
+listFiles() {
+
+    read -p "Enter the directory path (Enter for current directory): " dir
+	
+    if [ -z "$dir" ]; then
+    
+        dir="./"  # Use current working directory if no path is provided
+	
+    fi
+	
+    ls -l "$dir"
+}
+
 # Function to set the default directory in Settings for compressed files
 setDefaultDirectory() {
 
@@ -236,8 +259,9 @@ while true; do
     echo "4. Encrypt file"
     echo "5. Decrypt file"
     echo "6. Archive with Tar"
-    echo "7. Settings"
-    echo "8. Exit"
+    echo "7. List Files"
+    echo "8. Settings"
+    echo "9. Exit"
     echo " "
 
     read -p "Choose an Option: " choice
@@ -246,11 +270,12 @@ while true; do
 
         1) compressWith_gz ;;
         2) compressWith_xz ;;
-	    3) uncompress ;;
+	3) uncompress ;;
         4) encryptFile ;;
         5) decryptFile ;;
         6) archiveWith_tar ;;
-        7)
+	7) listFiles ;;
+        8)
 
 		clear
             	echo "-=-=-=- Settings -=-=-=-"
@@ -266,7 +291,7 @@ while true; do
                 	3) ;;
                 	*) echo "Invalid choice. Please select a valid option." ;;
             	esac ;;
-        8) exit 0 ;;
+        9) exit 0 ;;
         *) echo "Invalid choice. Please select a valid option." ;;
 
     esac
