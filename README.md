@@ -2,7 +2,7 @@
 ## _Azzy's complete terminal file archiving tool!_
 
 ### Desc:
-Comprezy is a terminal tool meant to ease the use of compression (gz and xz), encryption/decryption (gnugp), and archiving (tar) terminal tools. 
+Comprezy is a terminal tool meant to ease the use of compression (gz and xz), encryption/decryption (gnupg), and archiving (tar) terminal tools. 
 
 ![comprezy.png](comprezy.png?raw=true "Comprezy")      ![comprezy - settings.png](comprezy_settings.png?raw=true "Comprezy Settings")
 
