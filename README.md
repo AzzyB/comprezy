@@ -15,10 +15,10 @@
     <img src="images/logo.png" alt="Logo" width="125" height="125">
   </a>
 
-<h3 align="center">project_title</h3>
+<h3 align="center">Comprezy</h3>
 
   <p align="center">
-    put some description here eventually
+    Comprezy is a terminal tool meant to ease the use of compression (gz and xz), encryption/decryption (gnupg), and archiving (tar) terminal tools. 
     <br />
     <a href="https://github.com/github_username/repo_name"><strong>Documentation »</strong></a>
 </div>
@@ -32,7 +32,7 @@
     <li>
       <a href="#about-the-project">About The Project</a>
       <ul>
-        <li><a href="#built-with">Built With</a></li>
+        <li><a href="#built-with">Scripted with</a></li>
       </ul>
     </li>
     <li>
@@ -56,7 +56,7 @@
 <!-- ABOUT THE PROJECT -->
 ## About The Project
 
-[![Product Name Screen Shot][product-screenshot]](https://example.com)
+[![Comprezy][project-screenshot]]([https://example.com](https://github.com/AzzyB/Comprezy/blob/main/comprezy.png))
 
 Here's a blank template to get started: To avoid retyping too much info. Do a search and replace with your text editor for the following: `github_username`, `repo_name`, `twitter_handle`, `linkedin_username`, `email_client`, `email`, `project_title`, `project_description`
 
